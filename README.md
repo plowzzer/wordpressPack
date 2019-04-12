@@ -1,6 +1,6 @@
-# Presspack
+# WordpressPack
 
-> Make WordPress theme development great again.
+> Totalmente inspirado no desenvolvimento de Jaredpalmer Presspack - https://github.com/jaredpalmer/presspack
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -39,8 +39,8 @@
 ## Getting Started
 
 ```bash
-git clone git@github.com:jaredpalmer/presspack.git
-yarn install
+git clone git@github.com:plowzzer/wordpressPack.git
+yarn install / npm install
 composer install # if you want plugins ( not required )
 docker-compose up
 ```
@@ -53,6 +53,12 @@ To work on the theme locally, open another window/tab in terminal and run:
 yarn start
 ```
 
+ou
+
+```bash
+npm start
+```
+
 This will open a browser, watch all files (php, scss, js, etc) and reload the
 browser when you press save.
 
@@ -62,6 +68,12 @@ To create an optimized production build, run:
 
 ```bash
 yarn build
+```
+
+ou 
+
+```bash
+npm run-script build
 ```
 
 This will minify assets, bundle and uglify javascript, and compile scss to css.
@@ -106,6 +118,9 @@ new BrowserSyncPlugin({
 
 ```bash
 .
+├── 404.php
+├── archive.php
+├── comments.php
 ├── composer.json                # Compose dependencies (plugins)
 ├── composer.lock                # Composer lock file
 ├── docker-compose.yml           # Docker Compose configuration
@@ -115,6 +130,10 @@ new BrowserSyncPlugin({
 ├── index.php
 ├── package.json                 # Node.js dependencies
 ├── page.php
+├── screenshot.png               
+├── search.php
+├── sidebar.php
+├── single.php
 ├──scripts                       # Build / Dev Scripts
 │   ├── build.js                 # Build task
 │   ├── start.js                 # Start task
@@ -126,8 +145,17 @@ new BrowserSyncPlugin({
     │   └── <xxx>.js             # JS that will run on pages with <xxx> slug
     ├── style.scss               # SCSS style entry point
     ├── styles                   # SCSS
-    │   ├── _global-vars.scss
-    │   ├── _base.scss
+    │   ├── elements (...)
+    │   ├── forms (...)
+    │   ├── layout (...)
+    │   ├── media (...)
+    │   ├── mixins (...)
+    │   ├── modules (...)
+    │   ├── navigation (...)
+    │   ├── site (...)
+    │   ├── typography (...)
+    │   ├── variables-site (...)
+    │   ├── _normalize.scss
     │   └── ...
     └── util
         ├── Router.js            # HTML5 Router, DO NOT TOUCH
@@ -152,4 +180,5 @@ docker exec -i host_db_1 /usr/bin/mysql -u username -ppassword database_name < b
 
 ## Author
 
+- Pedro Pizzo [@plowzzer](https://twitter.com/plowzzer)
 - Jared Palmer [@jaredpalmer](https://twitter.com/jaredpalmer)
