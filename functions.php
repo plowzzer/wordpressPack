@@ -193,3 +193,10 @@ if( function_exists('acf_add_options_page') ) {
 		'redirect'		=> false
 	));
 }
+
+/**
+ * Load WooCommerce compatibility file.
+ */
+// if ( class_exists( 'WooCommerce' ) ) {
+// 	require get_template_directory() . '/inc/woocommerce.php';
+// }
