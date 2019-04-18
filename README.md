@@ -1,7 +1,5 @@
 # WordpressPack
 
-> Totalmente inspirado no desenvolvimento de Jaredpalmer Presspack - https://github.com/jaredpalmer/presspack
-
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -186,4 +184,4 @@ docker exec -i host_db_1 /usr/bin/mysql -u username -ppassword database_name < b
 ## Author
 
 - Pedro Pizzo [@plowzzer](https://twitter.com/plowzzer)
-- Jared Palmer [@jaredpalmer](https://twitter.com/jaredpalmer)
+- Inspired by Jaredpalmer [@jaredpalmer](https://twitter.com/jaredpalmer) Presspack - https://github.com/jaredpalmer/presspack
