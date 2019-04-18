@@ -42,19 +42,34 @@ add_action('after_setup_theme', function () {
      * Enable plugins to manage the document title
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#title-tag
      */
+
+    /*
+    * Make theme available for translation.
+    * Translations can be filed in the /languages/ directory.
+    * If you're building a theme based on Wordpress Pack, use a find and replace
+    * to change 'theme-lang' to the name of your theme in all the template files.
+    */
+    load_theme_textdomain( 'theme-lang', get_template_directory() . 'src/languages' );
+
+    // Add default posts and comments RSS feed links to head.
+    add_theme_support( 'automatic-feed-links' );
+        
     add_theme_support('title-tag');
     /**
      * Register navigation menus
      * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
      */
     register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'mini')
+				'primary_navigation' => __('Primary Navigation', 'mini'),
+				'secondary_navigation' => __('Secondary Navigation', 'mini'),
+				'footer_navigation' => __('Footer Navigation', 'mini')
     ]);
     /**
      * Enable post thumbnails
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
-    add_theme_support('post-thumbnails');
+		add_theme_support('post-thumbnails');
+		
     /**
      * Enable HTML5 markup support
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
@@ -69,6 +84,38 @@ add_action('after_setup_theme', function () {
 
 }, 20);
 
+/**
+	* This is the require from any port-types that u can add on post-types.php
+*/
+require get_template_directory() . '/src/inc/post-types.php';
+
+//This iss a few implementations that I use from underscores.me
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/src/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/src/inc/template-tags.php';
+
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/src/inc/template-functions.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/src/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/src/inc/jetpack.php';
+}
 
 add_action('rest_api_init', function () {
 	$namespace = 'presspack/v1';
@@ -110,4 +157,39 @@ function add_slug_to_body_class($classes) {
         $classes[] = sanitize_html_class($post->post_name);
     }
     return $classes;
+}
+
+add_filter('nav_menu_css_class', 'add_current_nav_class'); //Add the CURRENT MENU ITEM on header menu_slug
+
+function add_current_nav_class($classes, $item) {
+	global $post;
+	$current_post_type = get_post_type_object(get_post_type($post->ID));
+	$current_post_type_slug = $current_post_type->rewrite[slug];
+	$menu_slug = strtolower(trim($item->url));
+	if (strpos($menu_slug,$current_post_type_slug) !== false) {
+	   $classes[] = 'current-page-item';
+	}
+	return $classes;
+}
+
+/*
+* This are functions form acf pro
+*/
+
+//Google Maps key
+function my_acf_init() {
+	acf_update_setting('google_api_key', get_field('google_maps_key', 'options'));
+}
+
+add_action('acf/init', 'my_acf_init');
+
+//Theme options on Admin menu
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme options',
+		'menu_title'	=> 'Theme options',
+		'menu_slug' 	=> 'admin-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
 }

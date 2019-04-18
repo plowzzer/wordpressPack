@@ -37,10 +37,10 @@
 				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 				<?php
 			endif;
-			$teste_description = get_bloginfo( 'description', 'display' );
-			if ( $teste_description || is_customize_preview() ) :
+			$wordpressPack_description = get_bloginfo( 'description', 'display' );
+			if ( $wordpressPack_description || is_customize_preview() ) :
 				?>
-				<p class="site-description"><?php echo $teste_description; /* WPCS: xss ok. */ ?></p>
+				<p class="site-description"><?php echo $wordpressPack_description; /* WPCS: xss ok. */ ?></p>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 

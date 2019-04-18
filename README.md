@@ -140,10 +140,13 @@ new BrowserSyncPlugin({
 │   └── webpack.config.js        # Webpack configuration
 └──src
     ├── index.js                 # JavaScript entry point
+    ├── inc                      # Writen functions
     ├── routes                   # Routes
     │   ├── common.js            # JS that will run on EVERY page
     │   └── <xxx>.js             # JS that will run on pages with <xxx> slug
-    ├── style.scss               # SCSS style entry point
+    ├── languages                # Multiple Languages support
+    ├── template-parts           # Multiple template parts support
+    ├── style.scss               # SCSS style entry point (objects are in styles folder)
     ├── styles                   # SCSS
     │   ├── elements (...)
     │   ├── forms (...)
@@ -152,10 +155,12 @@ new BrowserSyncPlugin({
     │   ├── mixins (...)
     │   ├── modules (...)
     │   ├── navigation (...)
+    │   ├── shop (...)          # For Woocommerce features
     │   ├── site (...)
     │   ├── typography (...)
     │   ├── variables-site (...)
     │   ├── _normalize.scss
+    │   ├── _woocommerce.scss
     │   └── ...
     └── util
         ├── Router.js            # HTML5 Router, DO NOT TOUCH
