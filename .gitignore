@@ -5,3 +5,4 @@ wp-content
 vendor
 *.log
 .idea
+*.DS_Store
